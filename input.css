@@ -12,3 +12,11 @@ body {
     counter-increment: counterNumber;
     content: counter(counterNumber);
 }
+
+.swal2-confirm {
+    @apply py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 !important;
+}
+
+.swal2-cancel {
+    @apply py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 text-gray-50 hover:border-gray-50 hover:text-blue-100 disabled:opacity-50 disabled:pointer-events-none dark:border-gray-700 dark:text-gray-50 dark:hover:text-gray-100 dark:hover:border-gray-600 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 !important;
+}

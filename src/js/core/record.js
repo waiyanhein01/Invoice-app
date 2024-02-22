@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { rowGroup, rowTemplate, totalCost } from "./selectors.js"
 
 // let recordIndex = 1;
@@ -23,10 +24,44 @@ export const updateRecordTotal = () => {
 
 export const deleteRecord = (event) => {
      const row = event.target.closest('.row')
-     if(confirm("Are u sure want to delete?")){
-        row.remove();
-        // updateRecordTotal();
-     }
+    //  if(confirm("Are u sure want to delete?")){
+    //     row.remove();
+    //     // updateRecordTotal();
+    //  }
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        // confirmButtonColor: "#3085d6",
+        // cancelButtonColor: "#d33",
+        confirmButtonText: "Confirm"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            row.remove();
+            // Swal.fire({
+            //     title: "Deleted!",
+            //     text: "Your file has been deleted.",
+            //     icon: "success",
+            //     confirmButtonText: "Close",
+            // });
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "bottom-start",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                }
+              });
+              Toast.fire({
+                icon: "success",
+                title: "Remove successfully"
+              });
+        }
+    });
 }
 
 export const updateRecord = (productId,q) => {
